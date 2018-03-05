@@ -1,0 +1,65 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<html>
+  <style media="screen">
+    input {
+      margin-bottom: 0; important!
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="row">
+        <form class="col s6" method="post" action="/accounts/signup/">
+          {% csrf_token %}
+          <div class="row">
+            <div class="input-field col s6">
+              <input name="first_name" id="id_first_name" id="first_name" type="text" class="validate {% if form.errors.first_name %}invalid{% endif %}">
+              <label for="first_name">First Name</label>
+              <p style="padding: 0; margin: 0;">{{ form.errors.first_name }}</p>
+            </div>
+            <div class="input-field col s6">
+              <input name="last_name" id="id_last_name" type="text" class="validate">
+              <label for="last_name">Last Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="username" id="id_username" id="username" type="text" class="validate">
+              <label for="username">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="email" id="id_email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="password1" id="id_password1" type="password" class="validate">
+              <label for="password1">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="password2" id="id_password2" type="password" class="validate">
+              <label for="password2">Password</label>
+            </div>
+          </div>
+          <input class="waves-effect waves-light btn" type="submit" value="Register">
+        </form>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  </body>
+</html>
+
+{% endblock %}

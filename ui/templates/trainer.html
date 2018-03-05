@@ -1,0 +1,367 @@
+{% load staticfiles %}
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Company NAME</title>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=latin-ext" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+      <link href="{% static 'style.css' %}" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Host Two Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <!--<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700' rel='stylesheet' type='text/css'>-->
+        <link rel="stylesheet" href="{% static 'stilizacija/css/fonticons.css' %}">
+        <link rel="stylesheet" href="{% static 'stilizacija/fonts/stylesheet.css' %}">
+        <link rel="stylesheet" href="{% static 'stilizacija/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'stilizacija/css/bootstrap.min.css' %}">
+        <!--        <link rel="stylesheet" href="{% static 'stilizacija/css/bootstrap-theme.min.css">-->
+
+
+        <!--For Plugins external css-->
+        <!-- <link rel="stylesheet" href="{% static 'stilizacija/css/plugins.css" /> -->
+        <link rel="stylesheet" href="{% static 'stilizacija/css/plugins.css' %}" />
+
+        <!--Theme custom css -->
+        <link rel="stylesheet" href="{% static 'stilizacija/css/style.css' %}">
+
+        <!--Theme Responsive css-->
+        <link rel="stylesheet" href="{% static 'stilizacija/css/responsive.css' %}" />
+
+        <script src="{% static 'stilizacija/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+    </head>
+    <body data-spy="scroll" data-target="#navmenu">
+
+      <!-- DJANGO MESSAGES -->
+  {% if messages %}
+      <script type="text/javascript">
+        swal(
+          'OneZero',
+          '{% for message in messages %}{{ message.tags }}: {{ message }} <br>{% endfor %}',    <!--prolazi petljlom kroz poruke---->
+          'success'
+        )
+      </script>
+  {% endif %}
+  <!-- DJANGO MESSAGES END -->
+  <script type="text/javascript">
+  swal({
+    title: 'you have successfully signed up for training!',
+    width: 300,
+    padding: 100,
+    background: '#fff url(//bit.ly/1Nqn9HU)'
+  })
+  </script>
+  </script>
+
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+		<div class='preloader'><div class='loaded'>&nbsp;</div></div>
+        <!--Home page style-->
+
+        <header id="main_menu" class="header navbar-fixed-top">
+            <div class="main_menu_bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="nave_menu">
+                            <nav class="navbar navbar-default" id="#navmenu">
+                                <div class="container-fluid">
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="{% url 'index' %}">
+                                            <img src="{% static 'stilizacija/images/logo.png' %}"/>
+                                        </a>
+                                    </div>
+
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+
+
+
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+{% if request.user.is_authenticated %}
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="{% url 'index' %}">Home</a></li>
+                                            <li><a href="page.html" title="">Trainers</a></li>
+                                            <li><a href="#howitwork">How It Works</a></li>
+                                            <li><a href="{% url 'training' %}">Services</a></li>
+                                            <li><a href="#footer">Contact</a></li>
+                                            <li><a href="/accounts/logout/">log out</a></li>
+
+                                        </ul>
+{% else %}
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="#home">Home</a></li>
+    <li><a href="page.html" title="">Trainers</a></li>
+    <li><a href="#howitwork">How It Works</a></li>
+    <li><a href="{% url 'training' %}">Services</a></li>
+    <li><a href="#footer">Contact</a></li>
+    <li><a href="/accounts/login/">login</a></li>
+
+</ul>
+{% endif %}
+                                    </div>
+
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </header> <!--End of header -->
+
+
+
+        <section id="home" class="home">
+            <div class="home_overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="main_slider_area">
+                            <div class="slider">
+                                <div class="single_slider">
+                                    <h2>Fitness in a can <span>/</span></h2>
+                                    <p>Yes you can  <span class="slash">/</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End of Banner Section -->
+
+
+
+
+        <section id="summer" class="summer" style="background:#363855">
+            <div class="container">
+
+
+                <div class="row">
+                    <div class="main_summer_area2">
+                        <div class="single_summer2">
+                            <div class="col-sm-8 no-padding">
+                                <div class="single_summer_item2">
+                                    <div class="single_summer_item_img2" style="background:green">
+                                      <h2>nesto vise o treneru</h2>
+                                      <p>{{trainer.about}}</p>
+
+                                    </div>
+                                    <div class="single_summer_item_left_content2">
+
+
+                                        <img src="{{trainer.picture.url}}"width="300">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 no-padding">
+                                <div class="single_summer_item2_righ">
+
+                                    <div class="single_summer_item_img2_right" style="background:red">
+                                      <h2>Next training</h2>
+                                      <ul>
+                                      {% for t in trainings %}
+                                        <li class="current"><a href="{% url 'selectedTraining' t.id reg_user.id %}"title="">{{ t.name }}</a></li>
+
+                                        <li>duration:{{t.duration}}</li>
+                                        <li>type:{{t.type}}</li>
+                                        <li>type:{{t.lng}}</li>
+                                        <li>type:{{t.lat}}</li>
+boki!!!!!!!!!!!!!!!!!!
+                                      {% endfor %}
+                                    </ul>
+                                    </div>
+
+                                    <div class="single_summer_item_bottom_content2_right">
+
+
+                                        <h2>{{trainer.first_name}}</h2>
+                                        <p>{{trainer.last_name}}</p>
+                                        <p>{{trainer.email}}</p>
+                                        <p>{{trainer.phone}}</p>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="map" class="bigidea">
+            <div  class="container">
+                <div  class="row">
+                    <div class="main_bigidea_area">
+                        <h2>We launch leaders with big ideas</h2>
+                        <p>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <footer id="footer" class="footer">
+            <div class="container">
+                <div class="row">
+
+                    <div class="footer_widget_area">
+                        <div class="col-sm-4">
+                            <div class="single_widget">
+                                <h4>Resources</h4>
+                                <p>Easily manage your inspiration and work-in-progress by dragging images into projects and sharable client groups.
+                                    work-in-progress by dragging images into projects and sharable client group</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+
+                            <div class="single_top_widget_right">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="single_widget single_top_widget_right_about">
+                                            <h4>About us</h4>
+                                            <p>Easily manage your inspiration and work-in-progress by dragging images into projects and sharable client groups.
+                                                work-in-progress by dragging images into projects and sharable client group</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="single_widget single_top_widget_right_socail">
+                                            <h4>Stay in touch</h4>
+
+                                            <div class="socail_area">
+                                                <a href=""><i class="fa fa-facebook"></i></a>
+                                                <a href=""><i class="fa fa-twitter"></i></a>
+                                                <a href=""><i class="fa fa-youtube"></i></a>
+                                                <a href=""><i class="fa fa-linkedin"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="single_bottom_widget">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="name" placeholder="Your Name" required="">
+                                    <input type="email" class="form-control" name="name" placeholder="Your Email" required="">
+                                    <button type="submit" class="form-control">Join Newsletter <i class="lnr lnr-chevron-right"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="main_footer text-center">
+                    </div>
+                </div>
+            </div>
+        </footer><!-- End of footer section -->
+
+        <!-- STRAT SCROLL TO TOP -->
+
+        <div class="scrollup">
+            <a href="#"><i class="fa fa-chevron-up"></i></a>
+        </div>
+
+        <script src="{% static 'stilizacija/js/vendor/jquery-1.11.2.min.js' %}"></script>
+        <script src="{% static 'stilizacija/js/vendor/bootstrap.min.js' %}"></script>
+        <script src="{% static 'stilizacija/js/vendor/isotope.min.js' %}"></script>
+
+        <script src="{% static 'stilizacija/js/jquery.easypiechart.min.js' %}"></script>
+        <script src="{% static 'stilizacija/js/jquery.mixitup.min.js' %}"></script>
+        <script src="{% static 'stilizacija/js/jquery.easing.1.3.js' %}"></script>
+        <script src="http://maps.google.com/maps/api/js"></script>
+        <script src="{% static 'stilizacija/js/gmaps.min.js' %}"></script>
+        <script>
+          function initMap() { //44.871689, 20.644679
+            var gdeDaSeMapaOtvara = {lat:44.871689, lng:20.644679}
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 10,
+              center: gdeDaSeMapaOtvara
+            });
+            const ajaxObj = {
+              type: "POST",
+              url: "/trainerZaAjaks/{{ trainer.id }}",
+              data: {
+                csrfmiddlewaretoken: "{{csrf_token}}",
+              },
+              success: function(data) {
+                const relevant_data = JSON.parse(data);
+                relevant_data.forEach(function(item) {
+                  attachInfo(map, item);
+
+                });
+              },
+            };
+            $.ajax(ajaxObj);
+          }
+
+          function attachInfo(map, item) {
+            console.log(item);
+            const datum = new Date(item.start);
+            // var x =(datum.getTime);
+            // var minutes = 1000*60;
+            // var hours = minutes*60;
+            // var days = hours*24
+            // var years = days*360
+            // var y = Math.round(x/minutes);
+            // console.log(y)
+            // console.log(datum.getFullYear());
+            // console.log(datum.getUTCHours());
+            // console.log(datum.getUTCMinutes());
+            const marker = new google.maps.Marker({
+              position: item,
+              map: map,
+            });
+            var infowindow =  new google.maps.InfoWindow({
+              content: `${item.type}
+                        ${item.duration}
+              ${datum.getFullYear()}/
+              ${datum.getMonth()}/
+              ${datum.getDay()} u
+              ${datum.getUTCHours()}:
+              ${datum.getUTCMinutes()}
+              ${datum.getTime()}`
+            });
+            google.maps.event.addListener(marker, 'mouseover', function() {
+              infowindow.open(map, this);
+            });
+            google.maps.event.addListener(marker, 'mouseout', function() {
+              infowindow.close(map, this);
+            });
+          }
+        </script>
+
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB26435dwCS6teaxf8qj6pNkAlk73vFt7s&callback=initMap"></script></body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+        <script src="{% static 'stilizacija/js/plugins.js' %}"></script>
+        <script src="{% static 'stilizacija/js/main.js' %}"></script>
+
+    </body>
+</html>

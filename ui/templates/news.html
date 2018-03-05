@@ -1,0 +1,12 @@
+{% for n1 in news %}
+<div class="col-sm-3">
+    <div class="single_features">
+        <div class="feature_icon"><i class="lnr lnr-cloud"></i></div>
+
+        <h2>{{n1.hedline}}</h2>
+        <p>Date-{{n1.date}}</p>
+        <p>{{n1.text|truncatechars:150}}</p>
+        <a href="{% url 'wholenews' n1.id %}" style="color:blue">Explore more →</a>
+    </div>
+</div>
+  {% endfor %}

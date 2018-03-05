@@ -1,0 +1,52 @@
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<div class="container profile">
+  <div class="row">
+    <div class="span12">
+      <div class="well well-small clearfix">
+        <div class="row-fluid">
+          <div class="span2">
+             <img src="{{reg_user.profilePicture.url}}" class="img-polaroid"/>
+
+             <form  method="post" action="/userProfilechannges/" enctype="multipart/form-data">
+               {% csrf_token %}
+             <input type="file" name="pic" accept="image/*"><br />
+             <input type="submit" value="Register" name="name" value="button">
+           </form>
+
+          </div>
+          <div class="span4">
+             <h2>{{user.first_name}}</h2>
+            <ul class="unstyled">
+              <li><i class="icon-phone"></i> 916-241-3613</li>
+              <li><i class="icon-envelope"></i>{{user.email}}</li>
+              <li><i class="icon-globe"></i> http://jonniespratley.me</li>
+            </ul>
+          </div>
+          <div class="span6">
+          <ul class="inline stats">
+               <li>
+                 <span>11</span>
+                 treninzi
+              </li>
+              <li>
+                 <span>3</span>
+                 ocena trenera
+              </li>
+
+          </ul>
+            <div><!--/span6-->
+            </div><!--/row-->
+      </div>
+      <!--Body content-->
+    </div>
+    <div class="text">
+      <textarea rows="4" cols="50">
+        napisati review o treneru samo ako je bio na min 3 treninga
+      </textarea>
+    </div>
+  </div>
+
+            <div class="well clearfix">
+            </div>
+</div>

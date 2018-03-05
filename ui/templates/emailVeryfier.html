@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+{% for t in niz %}
+
+<form action="" method="post">
+<input type="checkbox" name="vehicle" value="Bike">{{t.reguser.user.first_name}}<br>
+</form>
+{% endfor %}
+<a href="{% url 'sejvzaprisutnekorisnike' %}"> <button type="button">sign</button></a>
+
+</body>
+</html>
