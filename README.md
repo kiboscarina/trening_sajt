@@ -1,1 +1,1 @@
-# trening_sajt
+TRENING_SAJT
