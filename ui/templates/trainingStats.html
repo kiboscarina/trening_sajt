@@ -21,9 +21,22 @@
       <li>type:{{training.type}}</li>
       <li>type:{{training.id}}</li>
       <br /> <br />
-      <h3>prijavljeni na trening</h3>
+
+
+
+
+      <!-- <form  method="post" action="/treningDelete/" enctype="multipart/form-data">
+        {% csrf_token %}
+      <input type="submit" value="DELETE" name="name" value="button">
+    </form> -->
+
+
+
+
+
+    <h3>prijavljeni na trening</h3>
       {% for r in scheduletraining %}
-<p>{{ r.reguser }}</p>
+      <p>{{ r.reguser }}</p>
       {% endfor %}
 
 prijavi se za trening

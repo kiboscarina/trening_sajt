@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <body>
-<form class="" action="" method="post" >
+<form class="" method="post" action="" >
   {% csrf_token %}
   {{ form.as_p }}
-<button type="submit">posalji </button>
-   <h2>{{ text }}</h2>
+<button type="submit" name="a">posalji </button>
 </form>

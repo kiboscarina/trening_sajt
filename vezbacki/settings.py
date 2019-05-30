@@ -46,8 +46,6 @@ ALLOWED_HOSTS = ['192.168.0.101', '127.0.0.1', 'localhost']
 INSTALLED_APPS = [
     'sslserver',
     'django.contrib.sites',
-    'allauth.account',
-    'allauth.socialaccount',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,8 +54,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ui',
     'data',
+    'allauth.account',
+    'allauth.socialaccount',
     'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.facebook',
     'allauth',
     'crispy_forms',
     'bootstrap3_datetime',
@@ -83,10 +83,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTHENTICATION_BACKENDS = (
     
-    # Needed to login by username in Django admin, regardless of `allauth`
+  
     'django.contrib.auth.backends.ModelBackend',
 
-    # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
     
 )
@@ -120,11 +119,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Trening_baza',
         'USER': 'Trening_user',
-        'PASSWORD': 'zikson',
+        'PASSWORD': 'surdulica88',
         'HOST': 'localhost',
         'PORT': '5432',
     }
-}
+ }
 
 
 # Password validation
@@ -149,7 +148,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
-
+ 
 
 
 # Internationalization
@@ -173,3 +172,12 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True 
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+

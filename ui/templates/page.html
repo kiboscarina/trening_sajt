@@ -151,6 +151,7 @@
                                              <h1>Treneri</h1>
         {% for trainer in svi %}
           {% if forloop.counter0|divisibleby:2 %}
+
                                              <div class="row">
                                                  <div class="first_fitness_area">
                                                      <div class="col-sm-4 no-padding">
@@ -164,7 +165,7 @@
                                                              </div>
                                                              <div class="left_first_fitness_content">
                                                                  <p>{{trainer.short_massage}}</p>
-                                                                 <p>average_value---{{trainer.average_value}}</p>
+                                                                 <p>Prosecna ocena---{{trainer.average_value}}</p>
 
                                                                  <a href="">Read More</a>
                                                              </div>
@@ -217,7 +218,91 @@
                                              </div>
                    {% endif %}
 {% endfor %}
+
+{% if svi.has_other_pages %}
+  <ul class="pagination">
+    {% if svi.has_previous %}
+      <li><a href="?page={{ svi.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in svi.paginator.page_range %}
+      {% if svi.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if svi.has_next %}
+      <li><a href="?page={{ svi.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
                                          </div>
+
+
+
+
+
+
+
+                                           <!-- <tbody>
+                                             {% for trainer in svi %}
+                                               <tr>
+                                                 <td>{{ trainer.first_name }}</td>
+
+                                               </tr>
+                                             {% endfor %}
+                                           </tbody>
+                                         </table>
+
+                                         {% if svi.has_other_pages %}
+                                           <ul class="pagination">
+                                             {% if svi.has_previous %}
+                                               <li><a href="?page={{ svi.previous_page_number }}">&laquo;</a></li>
+                                             {% else %}
+                                               <li class="disabled"><span>&laquo;</span></li>
+                                             {% endif %}
+                                             {% for i in svi.paginator.page_range %}
+                                               {% if svi.number == i %}
+                                                 <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                               {% else %}
+                                                 <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                               {% endif %}
+                                             {% endfor %}
+                                             {% if svi.has_next %}
+                                               <li><a href="?page={{ svi.next_page_number }}">&raquo;</a></li>
+                                             {% else %}
+                                               <li class="disabled"><span>&raquo;</span></li>
+                                             {% endif %}
+                                           </ul>
+                                         {% endif %} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -6,7 +6,13 @@
       <div class="well well-small clearfix">
         <div class="row-fluid">
           <div class="span2">
+
+          {% if reg_user.profilePicture %}
              <img src="{{reg_user.profilePicture.url}}" class="img-polaroid"/>
+             {% else %}
+             <img src="/media/users_pic/default.jpg" class="img-polaroid"/>
+          {% endif %}
+
 
              <form  method="post" action="/userProfilechannges/" enctype="multipart/form-data">
                {% csrf_token %}
@@ -27,22 +33,42 @@
           <div class="span6">
           <ul class="inline stats">
 
+
+
           <h2>prijavljen na treninge</h2>
+          <div>
+
+                      {% if messages %}
+                      <li class="messages">
+                          {% for message in messages %}
+                          <li{% if message.tags %} "class="alert alert-success" role="alert"{{ message.tags }}"{% endif %}>{{ message }}</li>
+                          {% endfor %}
+                      </li>
+                      {% endif %}
+                      <br><br>
+          </div>
+
+
+
 
             {% for t in all_scheduled %}
-            <ul>
+            <ol>
               <li>
-                <b>{{t.training.name}}</b>
-                <ul>
+                <b>ime treninga:{{t.training.name}}</b>
+
+                <ol>
                 {% for sch in t.training.scheduletraining_set.all %}
-                  <li>user: {{sch.reguser}}</li>
+                  <li>prijavljeni vezbaci: {{sch.reguser}}</li>
                 {% endfor %}
-                </ul>
+              </ol>
               </li>
-            </ul>
+            </ol>
+            <!-- <input type="submit" value="Odjavi se" name="name" value="button"> -->
+            <a href="{% url 'odjava' t.training.id  %}"><button>odjavi se sa treninga </button></a>
             {% endfor %}
 
-            <div><!--/span6-->
+
+<div><!--/span6-->
             </div><!--/row-->
       </div>
       <!--Body content-->
@@ -52,7 +78,7 @@
       <ul>
         <h3>napisi ocenu za trenera</h3>
         {% for t in trainers %}
-        <li>  <a href="{% url 'userrating' t.pk %}">{{t.first_name}}</a></li>
+        <li>  <a href="{% url 'userrating' t.pk %}">{{t.first_name}} -->ocena</a></li>
         {% endfor %}
       </ul>
       <textarea rows="4" cols="50">

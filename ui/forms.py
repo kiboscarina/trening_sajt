@@ -68,13 +68,11 @@ class TrainingForm(forms.ModelForm):
             'lng',
             'lat'
         ]
-#  ovde iznad je izgled forme a u Meta mi je redosled i sta pozivam!!!!
+
 
 
 
     def __init__(self, *args, **kwargs):
-#         print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',kwargs)
-#         print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',args)
         self.user = kwargs.pop('user', None)
         print(self.user)
         super(TrainingForm, self).__init__(*args, **kwargs)
@@ -134,8 +132,9 @@ class TrainingForm(forms.ModelForm):
         return data
     
 def training_overlap_check(start=None, end=None, trainer=None, **kwargs):
-    print('KWARGS koij sam dobio je!!!!!!', kwargs)
-    print('TRAINER JE ', trainer)
+#     print('KWARGS koij sam dobio je!!!!!!', kwargs)
+#     print('args koij sam dobio je!!!!!!',args)
+#     print('TRAINER JE ', trainer)
     q1 = Training.objects.filter(trainer=trainer, start__gte=start, start__lt=end)
     q2 = Training.objects.filter(trainer=trainer, end__gt=start, end__lte=end)
     q3 = Training.objects.filter(trainer=trainer, start__lte=start, end__gte=end)

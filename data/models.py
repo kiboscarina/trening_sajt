@@ -1,9 +1,12 @@
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db.models import IntegerField, Model
 from django.db.models.signals import post_save
+
 from allauth.utils import get_username_max_length
+from data.utils import get_read_time
 
 
 class Trainer(models.Model):
@@ -23,14 +26,30 @@ class Trainer(models.Model):
 
 
 class News(models.Model):
-    class Meta:
-        verbose_name_plural = 'news'
     hedline = models.CharField(max_length=255)
-    text = models.TextField() 
+    text = models.TextField()
     picture = models.FileField(upload_to='news_pic', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
+    readTime = models.IntegerField(default = 0)
+#     user = models.ForeignKey(User)
+
+    class Meta:
+        verbose_name_plural = 'news'
+
+    def save(self, *args, **kwargs):
+        if self.pk:
+            stari_text = News.objects.get(pk=self.pk).text
+            if stari_text != self.text:
+                self.readTime = get_read_time(self.text)
+            
+        super(News, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.hedline
+    # def prikazZaindex(self):
+    #     return self.text[:4]
+#     def get_absolute_url(self):
+#         return reverse("NewsDetailView", kwargs=("id": self.id))
 
 
 class Training(models.Model):
@@ -50,12 +69,15 @@ class Training(models.Model):
     def __str__(self):
         return '{}: {}'.format(self.name, self.trainer)   
     
+    
 class RegUser(models.Model):
     user = models.ForeignKey(User)
     trainer = models.ForeignKey(Trainer, null=True, blank=True)
     profilePicture = models.FileField(upload_to='users_pic', null=True, blank=True)
     def __str__(self):
-        return self.user.first_name
+#         return self.user.first_name
+            return 'user->{}, trener->{}'.format(self.user, self.trainer)
+
 
 def create_profile(sender, **kwargs):
     print(kwargs)
@@ -81,11 +103,11 @@ class ScheduleTraining(models.Model):
 
 class Rating(models.Model):
     userrating = (
-        ('1','very bad'),
-        ('2','bad'),
-        ('3','medium'),
-        ('4','good'),
-        ('5','over 9000'),
+        ('1', 'very bad'),
+        ('2', 'bad'),
+        ('3', 'medium'),
+        ('4', 'good'),
+        ('5', 'over 9000'),
     )
     user_rating = IntegerField( 
                                 validators=[MaxValueValidator(5),
@@ -100,7 +122,7 @@ class Rating(models.Model):
 
     def save(self, *args, **kwargs):
         super(Rating, self).save(*args, **kwargs)
-        print('STA SE DESILO', self.user)
+        # print('STA SE DESILO', self.user)
         all_ratings = self.trainer.rating_set.all()
         values = all_ratings.values_list('user_rating', flat=True)
         suma = sum(list(values))

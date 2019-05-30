@@ -28,10 +28,14 @@
             <ul>
               {% for training in reg_user.trainer.training_set.all %}
                 <li>
-                  <a href="{% url 'trainingStats' training.id %}" title="">{{ training.type }}</a>
+                  ime treninga:<a href="{% url 'trainingStats' training.id %}" title="">{{ training.name }}</a><br>
+                  tip treninga: :<a href="{% url 'trainingStats' training.id %}" title="">{{ training.type }}</a>
                 </li>
               {% endfor %}
+
             </ul>
+
+
           </div>
           <div class="span6">
           <ul class="inline stats">
@@ -45,10 +49,12 @@
               </li>
 
           </ul>
-            <div><!--/span6-->
+            <div><!--/span6
             </div><!--/row-->
       </div>
       <a href = "{% url 'newTrainingForm' %}" >zakazivanje novog treninga</a>
+
+
    <!--Body content-->
     </div>
 

@@ -11,13 +11,9 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-
-
-//kako napisati petlju za prolazak kroz podatke sto dobijamo u trening pogledu
-//da stavimo umesto ove poruke hello world?
-//{% for t in trainers %}
-//{{ t.type }}
-//{%endfor%}
+// {% for t in trainers %}
+// {{ t.type }}
+// {%endfor%}
 // `${v1} ${v2} ${v1} ${v2}` = v1 + ' ' + v2 + ' ' + v1 + ' ' + v2 ---- javascript
 // '{} {} {} {}'.format(v1, v2, v1, v2) ---- python3, python2
 // f'{v1} {v2} {v1} {v2}' ---- python3.6
@@ -126,29 +122,40 @@
     <body data-spy="scroll" data-target="#navmenu">
 
       <!-- DJANGO MESSAGES -->
-  {% if messages %}
+  <!-- {% if messages %}
       <script type="text/javascript">
         swal(
           'OneZero',
-          '{% for message in messages %}{{ message.tags }}: {{ message }} <br>{% endfor %}',    <!--prolazi petljlom kroz poruke---->
+          '{% for message in messages %}{{ message.tags }}: {{ message }} <br>{% endfor %}',
           'success'
         )
       </script>
+   {% endif %} -->
+
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
   {% endif %}
+
+
+
   <!-- DJANGO MESSAGES END -->
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
   swal({
     title: 'you have successfully signed up for training!',
     width: 600,
     padding: 100,
     background: '#fff url(//bit.ly/1Nqn9HU)'
   })
-  </script>
+  </script> -->
   </script>
 
-        <!--[if lt IE 8]>
+        <!-- [if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        <![endif] -->
 
 
 		<div class='preloader'><div class='loaded'>&nbsp;</div></div>
@@ -259,6 +266,7 @@
                 <div class="row">
                     <div class="main_about_area">
                         <div class="features_area">
+
                           {% include 'news.html' %}
                         </div>
                     </div>
@@ -269,8 +277,8 @@
                         <div class="col-sm-4 no-padding">
                             <div class="single_left_first_fitness text-center">
                                 <div class="left_first_fitness_heading">
-                                    <h5>TOP 3 RATED TRAINE`1</h5>
-
+                                    <h5>TOP 3 RATED TRAINERS</h5>
+                                      <p> ukupno registrovanih trenera : {{ukupno_registrovanih_trenera}}</p>
                                 </div>
                                 <div class="left_first_fitness_icon">
                                     <i class="lnr lnr-drop"></i>
