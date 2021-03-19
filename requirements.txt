@@ -13,7 +13,7 @@ django-bootstrap3-datetimepicker-2==2.5.0
 django-crispy-forms==1.7.0
 django-datetime-widget==0.9.3
 django-sslserver==0.20
-djangorestframework==3.7.0
+djangorestframework==3.11.2
 future==0.16.0
 idna==2.6
 ipython==6.2.1
